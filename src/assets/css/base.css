@@ -1,0 +1,11 @@
+@import './normalize.css';
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #666;
+}
+/* body {
+  height: 3000px;
+} */
