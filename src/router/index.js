@@ -5,22 +5,17 @@ import Category from '../views/category/category'
 import Cart from '../views/cart/cart'
 import User from '../views/user/user'
 
-import Pop from '@/views/home/childComps/pop'
-import New from '@/views/home/childComps/new'
-import Sell from '@/views/home/childComps/sell'
+import detail from '@/views/detail/detail'
 
 Vue.use(VueRouter)
 
   const routes = [
     {path:'',redirect:'/home'},
-    {path:'/home',component:Home,redirect:'/home/pop',children:[
-      {path:'/home/pop',component:Pop},
-      {path:'/home/new',component:New},
-      {path:'/home/sell',component:Sell}
-    ]},
+    {path:'/home',component:Home},
     {path:'/category',component:Category},
     {path:'/cart',component:Cart},
-    {path:'/user',component:User}
+    {path:'/user',component:User},
+    {path:'/detail/:id',component:detail}
 ]
 
 const router = new VueRouter({

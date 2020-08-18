@@ -5,14 +5,15 @@
         <h3>购物街</h3>
       </div>
     </navbar>
+    <tabcontrol class="control" @tabchange="tabchange" v-show="isFiexd" ></tabcontrol>
     <scroll class="wrapper" ref="scroll" :probe-type="3" @scroll="scroll" :pullupload="true" 
     @pullingUp="pullingUp"> 
-      <swiper :banner="banner">
+      <swiper :banner="banner" :src="item.image">
       </swiper>
       <recommend :recommend="recommend">
       </recommend>
       <feature></feature>
-      <tabcontrol class="control" @tabchange="tabchange"></tabcontrol>
+      <tabcontrol  @tabchange="tabchange" ref="control"></tabcontrol>
       <!-- <router-view /> -->
       <goodlist :goods="showItem"></goodlist>
     </scroll>
@@ -44,7 +45,9 @@
         },
         item:['pop','new','sell'],
         index:0,
-        showback:false
+        showback:false,
+        controlTop:0,
+        isFiexd:false
 
       }
     },
@@ -64,21 +67,32 @@
       this.getHomeTabData('new'),
       this.getHomeTabData('sell')
     },
+    mounted() {
+     setTimeout(() => {
+       this.controlTop = this.$refs.control.$el.offsetTop
+     }, 500);
+    },
     methods: {
       tabchange(index) {
         this.index =index
       },
       scroll(position) {
         let y = position.y
+        // console.log(y);
         if(y <= -300) {
           this.showback = true
         } else {
           this.showback = false
         }
+        if(-y >= this.controlTop) {
+          this.isFiexd = true
+        } else {
+          this.isFiexd = false
+        }
       },
       pullingUp() {
         this.getHomeTabData(this.currentView)
-        console.log(this.currentView);
+
       
       },
       goback() {
@@ -96,7 +110,7 @@
         getHomeTabData(type, page).then(res => {
           this.goods[type].list.push(...res.data.list)
           this.$refs.scroll.scroll.refresh()
-        this.$refs.scroll.finishPull()
+          this.$refs.scroll.finishPull()
 
         })
         this.goods[type].page = page + 1
@@ -123,9 +137,8 @@
   }
 
   .control {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 44px;
+    position: relative;
+    z-index: 999;
     background-color: #fff;
   }
   .wrapper {

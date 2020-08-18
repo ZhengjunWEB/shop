@@ -1,10 +1,8 @@
 <template>
-  <div class="gooditem">
-    <a href="">
+  <div class="gooditem" @click = 'goodItemClick(gooditem.iid)'>
       <div class="img">
         <img :src="gooditem.show.img" alt="">
       </div>
-    </a>
     <div class="title">{{gooditem.title | title}}</div>
     <div>
       <span class="price">￥{{ gooditem.price}}</span>
@@ -20,6 +18,11 @@
     filters:{
       title(value) {
         return value.slice(0,12)+'...'
+      }
+    },
+    methods:{
+      goodItemClick(id) {
+       this.$router.push('/detail/'+id)
       }
     }
   }

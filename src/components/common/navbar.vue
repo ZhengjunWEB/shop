@@ -16,16 +16,16 @@
 </script>
 <style scoped>
   .nav_bar {
-    position: fixed;
+    /* position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0; */
     display: flex;
     width: 100%;
     height: 44px;
     line-height: 44px;
     text-align: center;
-    z-index: 999;
+    /* z-index: 999; */
    
   }
   .nav_left,

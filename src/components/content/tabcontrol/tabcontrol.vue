@@ -1,7 +1,7 @@
 <template>
   <div class="tab_control">
     <div v-for="(item,index) in titles" class="tab_item" :key="index" @click="changeItem(index)"> 
-      <span :class="{active:index==isActive}">{{item}}</span>
+      <span :class="{active:index == tabindex}">{{item}}</span>
     </div>
     <!-- <router-view /> -->
   </div>
@@ -24,12 +24,14 @@
     },
     methods:{
       changeItem(index) {
-        this.isActive = index
+        this.$store.commit('changIndex',index)
         this.$emit('tabchange',index)
-        // this.$router.push(this.path[index])
-        // console.log(this.path[index]);
-      },
-      
+      }
+    },
+    computed:{
+      tabindex() {
+        return  this.$store.state.tabIndex
+      }
     }
   }
 </script>
