@@ -13,6 +13,7 @@
     position: fixed;
     bottom: 55px;
     right: 10px;
+    z-index: 99;
   }
   .goback img {
     width: 43px;

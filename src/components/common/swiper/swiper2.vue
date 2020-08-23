@@ -1,7 +1,7 @@
 <template>
   <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
     <van-swipe-item v-for="item in banner" :key="item.acm">
-        <img :src="item" alt="">
+        <img :src="item" alt="" @load="imgLoad">
     </van-swipe-item>
   </van-swipe>
 </template>
@@ -14,6 +14,11 @@
     components: {
       [Swipe.name]: Swipe,
       [SwipeItem.name]: SwipeItem
+    },
+    methods:{
+      imgLoad() {
+        this.$emit('imgLoad')
+      }
     }
   }
 </script>

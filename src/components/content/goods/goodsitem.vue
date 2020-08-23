@@ -1,7 +1,7 @@
 <template>
   <div class="gooditem" @click = 'goodItemClick(gooditem.iid)'>
       <div class="img">
-        <img :src="gooditem.show.img" alt="">
+        <img v-lazy="showImg" alt="">
       </div>
     <div class="title">{{gooditem.title | title}}</div>
     <div>
@@ -23,6 +23,11 @@
     methods:{
       goodItemClick(id) {
        this.$router.push('/detail/'+id)
+      }
+    },
+    computed: {
+      showImg() {
+        return  this.gooditem.image || this.gooditem.show.img
       }
     }
   }

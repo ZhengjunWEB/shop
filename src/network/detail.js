@@ -8,3 +8,9 @@ export function detail(id) {
     }
   })
 }
+export function recommend() {
+  return request({
+    url:'/recommend' ,
+  })
+}
+

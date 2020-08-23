@@ -31,9 +31,11 @@
   import tabcontrol from '@/components/content/tabcontrol/tabcontrol'
   import goodlist from '@/components/content/goods/goodlist'
   import scroll from '@/components/common/scroll/Scroll'
-  import goBack from '@/components/content/goback/goBack'
+  // import goBack from '@/components/content/goback/goBack'
+  import {goBackMixin} from '@/common/mixin'
 
   export default {
+    mixins:[ goBackMixin ],
     data() {
       return {
         banner: [],
@@ -45,7 +47,7 @@
         },
         item:['pop','new','sell'],
         index:0,
-        showback:false,
+        // showback:false,
         controlTop:0,
         isFiexd:false
 
@@ -59,7 +61,7 @@
       tabcontrol,
       goodlist,
       scroll,
-      goBack
+      // goBack
     },
     created() {
       this.getHomeData(),
@@ -78,25 +80,14 @@
       },
       scroll(position) {
         let y = position.y
-        // console.log(y);
-        if(y <= -300) {
-          this.showback = true
-        } else {
-          this.showback = false
-        }
-        if(-y >= this.controlTop) {
-          this.isFiexd = true
-        } else {
-          this.isFiexd = false
-        }
+        this.showback = y <= -300
+
+        this.isFiexd = -y >= this.controlTop
       },
       pullingUp() {
         this.getHomeTabData(this.currentView)
 
       
-      },
-      goback() {
-        this.$refs.scroll.scrollTo(0, 0)
       },
       // 网络请求
       getHomeData() {
