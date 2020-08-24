@@ -17,7 +17,7 @@
     },
     filters:{
       title(value) {
-        return value.slice(0,12)+'...'
+        return value.slice(0,10)+'...'
       }
     },
     methods:{
@@ -37,6 +37,7 @@
     width: 50%;
     height: 260px;
     text-align: center;
+    padding-bottom: 10px;
   }
   .img {
     width: 95%;

@@ -8,7 +8,7 @@
     <tabcontrol class="control" @tabchange="tabchange" v-show="isFiexd" ></tabcontrol>
     <scroll class="wrapper" ref="scroll" :probe-type="3" @scroll="scroll" :pullupload="true" 
     @pullingUp="pullingUp"> 
-      <swiper :banner="banner" :src="item.image">
+      <swiper :banner="banner" :src="item.image" @onload="onload">
       </swiper>
       <recommend :recommend="recommend">
       </recommend>
@@ -105,6 +105,9 @@
 
         })
         this.goods[type].page = page + 1
+      },
+      onload() {
+        this.$refs.scroll.scroll.refresh()
       }
     },
     computed:{
