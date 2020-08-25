@@ -9,7 +9,7 @@ module.exports ={
       minPixelValue:1,//小于或者等于'1px'不转换为视窗单位
       mediaQuery:false,//允许在媒体查询中转换'px'
       
-      selectorBlackList:['navbar','price1'],//指定不需要转换的类，或者在不需要转换的，写的时候后面多跟一个类名
+      selectorBlackList:[],//指定不需要转换的类，或者在不需要转换的，写的时候后面多跟一个类名
      
     }
   }

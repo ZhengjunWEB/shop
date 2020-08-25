@@ -9,7 +9,7 @@
       <cate_list :list="list" @clickList="clickList"></cate_list>
     </scroll>
     <scroll  class="cate_r" >
-      <cate_detail :list="list" :num="num"></cate_detail>
+      <cate_detail :dateil_list="dateil_list" :num="num"></cate_detail>
     </scroll>
   </div>
 </template>
@@ -25,15 +25,19 @@
       request({
         url: '/category'
       }).then(res => {
-        let data = res.data.category
         console.log(res);
-        this.list = data.list
-      })
+        this.list =  res.data.category.list
+      }),
+      //获取第一次数据
+      setTimeout(() => {
+        this.getDetail('3627')
+      },200)
     },
     data() {
       return {
         list: [],
-        num: 0
+        num: 0,
+        dateil_list: []
       }
     },
     components: {
@@ -45,6 +49,18 @@
     methods: {
       clickList(i) {
         this.num = i
+        this.getDetail(this.list[i].maitKey)
+      },
+      getDetail(maitKey) {
+        request({
+        url: '/subcategory',
+        params: {
+          maitKey
+        }
+      }).then(res => {
+        this.dateil_list = res.data.list
+        console.log(res);
+      })
       }
     }
   }

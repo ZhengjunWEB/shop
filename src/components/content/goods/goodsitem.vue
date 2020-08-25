@@ -3,7 +3,7 @@
       <div class="img">
         <img v-lazy="showImg" alt="">
       </div>
-    <div class="title">{{gooditem.title | title}}</div>
+    <div class="title">{{gooditem.title}}</div>
     <div>
       <span class="price">￥{{ gooditem.price}}</span>
       <span>{{gooditem.cfav}}</span>
@@ -52,7 +52,10 @@
     height: 100%;
   }
   .title {
+    text-overflow: ellipsis;
     margin-bottom: 5px;
+    white-space:nowrap;
+    overflow:hidden;
   }
   .price {
     margin-right: 5px;

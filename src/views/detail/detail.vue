@@ -137,6 +137,7 @@
         this.top[1] = this.$refs.size.$el.offsetTop
         this.top[2] = this.$refs.comment.$el.offsetTop
         this.top[3] = this.$refs.recommend.$el.offsetTop
+        this.$refs.scroll.scroll.refresh()
       },
       //页面滚动tab栏切换
       conScroll(options) {
