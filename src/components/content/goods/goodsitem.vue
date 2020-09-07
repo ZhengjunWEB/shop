@@ -6,7 +6,7 @@
     <div class="title">{{gooditem.title}}</div>
     <div>
       <span class="price">￥{{ gooditem.price}}</span>
-      <span>{{gooditem.cfav}}</span>
+      <span><img src="@/assets/img/home/shoucang.svg" class="like">{{gooditem.cfav}}</span>
     </div>
   </div>
 </template>
@@ -60,5 +60,11 @@
   .price {
     margin-right: 5px;
     color: #FF8E97;
+  }
+  .like {
+    width: 14px;
+    height: 14px;
+    vertical-align: -2px;
+    margin-left: 3px;
   }
 </style>
